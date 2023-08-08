@@ -1,0 +1,35 @@
+{% extends "kitchen_magic/base.html" %}
+<!-- -->
+{% load crispy_forms_tags %}
+<!-- -->
+{% block content %}
+<form method="get">
+  {{ form|crispy }}
+  <br>
+  <button type="submit">Apply Filters</button>
+  <a href="?">Reset Filters</a>
+</form>
+<hr>
+<h1>Recipes:</h1>
+{% for recipe in recipes %}
+<div class="card my-4">
+  <div class="card-body">
+    <h5 class="card-title">{{ recipe.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">By {{ recipe.author }}</h6>
+    <br>
+    <h6 class="card-subtitle mb-2 text-muted"><b>Cooking time: {{ recipe.cooking_time }}</b></h6>
+    <div class="fixed-size-container">
+      <p class="long-text" data-text="{{ recipe.instructions }}"></p>
+    </div>
+    {% load static %}
+    <script src="{% static 'scripts/script.js' %}"></script>
+    <hr>
+    <h6 class="card-subtitle mb-2 text-muted">Last edited 
+      {{ recipe.updated_at|date:"F d, Y" }}
+    </h6>
+    <a href="{% url 'kitchen-magic-detail' recipe.pk %}" class="card-link">View Recipe</a>
+  </div>
+</div>
+{% endfor %}
+<!-- -->
+{% endblock content %}

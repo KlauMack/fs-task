@@ -1,0 +1,31 @@
+{% extends "kitchen_magic/base.html" %}
+<!-- -->
+{% block content %}
+<div class="card my-4">
+  <div class="card-body">
+    <h5 class="card-title">{{ recipe.title }}</h5>
+    {% if object.author != user %}
+    <h6 class="card-subtitle mb-2 text-muted">By {{ recipe.author }}</h6>
+    {% endif %}
+    <br>
+    <h6 class="card-subtitle mb-2 text-muted"><b>Cooking time: {{ recipe.cooking_time }}</b></h6>
+    <br>
+    <h6 class="card-subtitle mb-2 text-muted"><b>Ingredients:</b></h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{ recipe.ingredients }}</h6>
+    <br>
+    <h6 class="card-subtitle mb-2 text-muted"><b>Instructions:</b></h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{ recipe.instructions }}</h6>
+    <hr>
+    <h6 class="card-subtitle mb-2 text-muted">Last edited 
+      {{ recipe.updated_at|date:"F d, Y" }}
+    </h6>
+  </div>
+</div>
+{% if object.author == user or user.is_staff %}
+<div class="col-4">
+    <a class="btn btn-outline-info" href="{% url 'kitchen-magic-update' object.id %}">Update</a>
+    <a class="btn btn-outline-danger" href="{% url 'kitchen-magic-delete' object.id %}">Delete</a>
+</div>
+{% endif %}
+<!-- -->
+{% endblock content %}
