@@ -52,7 +52,7 @@ To run the Django app locally, use the following command:
   ```
 Access the app in your web browser at http://localhost:8000.
 
-### Docker
+## Docker
 To run the app using Docker, follow these steps:
 
 1. Build the Docker image:
@@ -68,3 +68,13 @@ To set up the MySQL database, follow these steps:
 
 1. Create the necessary database schema and tables.
 2. Modify the `Dockerfile` and `docker-compose.yml` files to connect to your MySQL database.
+
+## Running Unit Tests
+To run the unit tests for your Django app, follow these steps:
+
+1. Make sure you have set up the development environment and installed the required dependencies as mentioned in the Installation section.
+2. Open a terminal or command prompt and navigate to the project's root directory (where the manage.py file is located).
+3. Run the following command to execute the unit tests:
+   ```bash
+   python manage.py test
+This command will discover and run all the unit tests found in your app's tests.py files.
